@@ -18,11 +18,9 @@
 # and donuts(23) returns 'Number of donuts: many'
 def donuts(count):
     if count >= 10:
-        text = 'many'
-    else:
-        text = str(count)
+        count = 'many'
 
-    return 'Number of donuts: ' + text
+    return 'Number of donuts: %s' % count
 
 
 # B. both_ends
@@ -33,8 +31,8 @@ def donuts(count):
 def both_ends(s):
     if len(s) <= 2:
         return ''
-    else:
-        return s[:2] + s[-2:]
+
+    return s[:2] + s[-2:]
 
 
 # C. fix_start

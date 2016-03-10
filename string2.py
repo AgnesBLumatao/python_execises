@@ -12,7 +12,7 @@
 def verbing(s):
     if len(s) < 3:
         return s
-    if len(s) >= 3 and 'ing' in s:
+    if len(s) >= 3 and s.endswith('ing'):
         return s + 'ly'
     else:
         return s + 'ing'
@@ -31,8 +31,8 @@ def not_bad(s):
     bad_index = s.find('bad')
     if not_index < bad_index:
         return s.replace(s[not_index:bad_index+len('bad')], 'good')
-    else:
-        return s
+
+    return s
 
 
 # F. front_back
@@ -43,23 +43,23 @@ def not_bad(s):
 # Given 2 strings, a and b, return a string of the form
 #  a-front + b-front + a-back + b-back
 def front_back(a, b):
-    a_index = get_string_index(a);
-    b_index = get_string_index(b);
-    new_string = a_index['front'] + b_index['front'] + a_index['back'] + b_index['back']
+    a_word = get_string_words(a);
+    b_word = get_string_words(b);
+    new_string = a_word['front'] + b_word['front'] + a_word['back'] + b_word['back']
     return new_string
 
 
-def get_string_index(s):
-    s_length = len(s);
-    front_len = s_length / 2
+def get_string_words(s):
+    s_length = len(s)
+    front_index = s_length / 2
     if s_length % 2 == 0:
-        front_index = s[0:front_len]
-        back_index = s[front_len:]
+        front_words = s[0:front_index]
+        back_words = s[front_index:]
     else:
-        front_index = s[0:front_len+1]
-        back_index = s[front_len+1:]
+        front_words = s[0:front_index+1]
+        back_words = s[front_index+1:]
 
-    return {'front' : front_index, 'back' : back_index}
+    return {'front' : front_words, 'back' : back_words}
 
 # Simple provided test() function used in main() to print
 # what each function returns vs. what it's supposed to return.
