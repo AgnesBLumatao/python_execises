@@ -15,10 +15,10 @@
 # and last chars of the string are the same.
 # Note: python does not have a ++ operator, but += works.
 def match_ends(words):
-    count = 0;
+    count = 0
     for word in words:
         if len(word) >= 2 and (word[0] == word[len(word)-1]):
-            count += 1;
+            count += 1
     return count
 
 
@@ -49,6 +49,11 @@ def front_x(words):
 # Hint: use a custom key= function to extract the last element form each tuple.
 def sort_last(tuples):
     return sorted(tuples, key=lambda x: x[1])
+    #return sorted(tuples, key=second_num)
+
+
+'''def second_num(element):
+    return element[1]'''
 
 
 # Simple provided test() function used in main() to print
