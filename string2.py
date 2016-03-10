@@ -43,29 +43,23 @@ def not_bad(s):
 # Given 2 strings, a and b, return a string of the form
 #  a-front + b-front + a-back + b-back
 def front_back(a, b):
-    front_a = ''
-    front_b = ''
-    a_len = len(a)
-    b_len = len(b)
-    a_front_len = len(a) / 2
-    b_front_len = len(b) / 2
-    if a_len % 2 == 0:
-        front_a = a[0:a_front_len]
-        back_a = a[a_front_len:]
-    else:
-        front_a = a[0:a_front_len+1]
-        back_a = a[a_front_len+1:]
-
-    if b_len % 2 == 0:
-        front_b = b[0:b_front_len]
-        back_b = b[b_front_len:]
-    else:
-        front_b = b[0:b_front_len+1]
-        back_b = b[b_front_len+1:]
-
-    new_string = front_a + front_b + back_a + back_b
+    a_index = get_string_index(a);
+    b_index = get_string_index(b);
+    new_string = a_index['front'] + b_index['front'] + a_index['back'] + b_index['back']
     return new_string
 
+
+def get_string_index(s):
+    s_length = len(s);
+    front_len = s_length / 2
+    if s_length % 2 == 0:
+        front_index = s[0:front_len]
+        back_index = s[front_len:]
+    else:
+        front_index = s[0:front_len+1]
+        back_index = s[front_len+1:]
+
+    return {'front' : front_index, 'back' : back_index}
 
 # Simple provided test() function used in main() to print
 # what each function returns vs. what it's supposed to return.
