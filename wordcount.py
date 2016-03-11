@@ -49,7 +49,7 @@ def print_words(filename):
 def print_top(filename):
     words = count_word(filename)
     for word in sorted(words, key=words.get, reverse=True):
-        print word, ' : ', words[word]
+        print '%s : %s' % (word, words[word])
 
 
 def count_word(filename):
