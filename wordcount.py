@@ -48,7 +48,7 @@ def print_words(filename):
 
 def print_top(filename):
     words = count_word(filename)
-    for word in sorted(words, key=words.get, reverse=True):
+    for word in sorted(words, key=words.get, reverse=True)[:20]:
         print '%s : %s' % (word, words[word])
 
 
