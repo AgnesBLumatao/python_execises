@@ -41,21 +41,29 @@ from collections import Counter
 # and builds and returns a word/count dict for it.
 # Then print_words() and print_top() can just call the utility function.
 def print_words(filename):
-    sorted_words = count_word(filename)
-    for key, value in collections.OrderedDict(sorted(sorted_words.items())).iteritems() :
-        print key, ' : ', value
+    words = count_word(filename)
+    for key in sorted(words):
+        print "%s : %s" % (key, words[key])
 
 
 def print_top(filename):
-    sorted_words = count_word(filename)
-    for key, value in sorted(sorted_words.iteritems(), key=lambda (k,v): (v), reverse=True)[:20]:
-        print "%s: %s" % (key, value)
+    words = count_word(filename)
+    for word in sorted(words, key=words.get, reverse=True):
+        print word, ' : ', words[word]
 
 
 def count_word(filename):
     with open(filename) as f:
-        wordcount = Counter(f.read().lower().split())
-    return wordcount
+        words_list = dict()
+        words = f.read().lower().split()
+        for word in words:
+            if word in words_list:
+                existing_word_count = words_list[word]
+                words_list[word] = existing_word_count + 1
+            else:
+                words_list[word] = 1
+
+    return words_list
 
 # This basic command line argument parsing code is provided and
 # calls the print_words() and print_top() functions which you must define.
